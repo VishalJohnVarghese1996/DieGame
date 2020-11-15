@@ -11,22 +11,25 @@ public class GameApplication {
         while (true){
             int option = scan.nextInt();
             switch (option){
-                case 1: int userDieOut1 = ThreadLocalRandom.current().nextInt(1, 7);
-                    int userDieOut2 = ThreadLocalRandom.current().nextInt(1, 7);
-                    int computerDieOut1 = ThreadLocalRandom.current().nextInt(1, 7);
-                    int computerDieOut2 = ThreadLocalRandom.current().nextInt(1, 7);
+                case 1:
+                    Die userDie = new Die();
+                    Die compDie = new Die();
+                    userDie.roll();
+                    compDie.roll();
+                    userDie.roll();;
+                    compDie.roll();
                     System.out.println("\nUser outcomes : ");
-                    printOutcomes(userDieOut1,userDieOut2);
+                    userDie.printOutcomes();
                     System.out.println("\nComputer outcomes : ");
-                    printOutcomes(computerDieOut1, computerDieOut2);
-                    if((userDieOut1+userDieOut2)==7 && (computerDieOut1+computerDieOut2)==7){
-                        System.out.println("GAME IS A TIE\n");
-                    }else if ((userDieOut1+userDieOut2)==7){
-                        System.out.println("CONGRATULATIONS..!!! YOU WON THE GAME\n");
-                    }else if((computerDieOut1+computerDieOut2)==7){
-                        System.out.println("YOU LOST, COMPUTER WON THE GAME\n");
+                    compDie.printOutcomes();
+                    if((userDie.getSumOfOuts())==7 && (compDie.getSumOfOuts())==7){
+                        System.out.println("\nGAME IS A TIE\n_______________________\n");
+                    }else if ((userDie.getSumOfOuts())==7){
+                        System.out.println("\nCONGRATULATIONS..!!! YOU WON THE GAME\n___________________\n");
+                    }else if((compDie.getSumOfOuts())==7){
+                        System.out.println("\nYOU LOST, COMPUTER WON THE GAME\n _____________________\n");
                     }else {
-                        System.out.println("GAME IS A TIE\n");
+                        System.out.println("\nGAME IS A TIE\n___________________\n");
                     }
                     printMenu();
                     break;
@@ -38,10 +41,6 @@ public class GameApplication {
     static void printMenu(){
         System.out.println("TWO DIE ROLLING GAME MENU\n1. Roll dies\n2. Exit");
         System.out.println("Choose your option");
-    }
-    static void printOutcomes(int out1, int out2){
-        System.out.println("Die 1 outcome : " + out1);
-        System.out.println("Die 2 outcome : " + out2);
     }
 }
 
